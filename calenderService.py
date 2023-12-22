@@ -60,7 +60,7 @@ class GoogleCalendar:
 
 # Usage
 calendar = GoogleCalendar()
-calendar.add_event('2023-12-23T17:00:00', summary='Meeting with austin', location='Office')
+calendar.add_event('2023-12-23T21:00:00', summary='Meeting with hashmat', location='Office')
 
 # For a recurring event
 # recurrence_rule = 'RRULE:FREQ=WEEKLY;BYDAY=MO'
