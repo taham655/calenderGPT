@@ -4,6 +4,8 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from dateutil.parser import parse
 from datetime import timedelta
+from tzlocal import get_localzone
+import tzlocal
 import datetime
 import os 
 
@@ -30,6 +32,7 @@ class GoogleCalendar:
 
     def add_event(self, start_time_str, summary, location=None, end_time_str=None, description=None, is_recurring=False, recurrence_rule=None):
         start_time = parse(start_time_str)
+        local_timezone = tzlocal.get_localzone_name()
 
         if not end_time_str:
             end_time = start_time + timedelta(minutes=15)
@@ -41,11 +44,11 @@ class GoogleCalendar:
             'description': description,
             'start': {
                 'dateTime': start_time_str,
-                'timeZone': 'Asia/Kuala_Lumpur',
+                'timeZone': local_timezone,
             },
             'end': {
                 'dateTime': end_time_str,
-                'timeZone': 'Asia/Kuala_Lumpur',
+                'timeZone': local_timezone,
             }
         }
 
@@ -57,7 +60,7 @@ class GoogleCalendar:
 
 # Usage
 calendar = GoogleCalendar()
-calendar.add_event('2023-12-23T12:00:00', summary='Quick Meeting', location='Office')
+calendar.add_event('2023-12-23T17:00:00', summary='Meeting with austin', location='Office')
 
 # For a recurring event
 # recurrence_rule = 'RRULE:FREQ=WEEKLY;BYDAY=MO'

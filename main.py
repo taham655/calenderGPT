@@ -8,13 +8,9 @@ load_dotenv()
 
 
 llm = OpenAI()
-# chat_model = ChatOpenAI()
-# memory = ConversationBufferWindowMemory( k=1)
-
 
 conversation_with_summary = ConversationChain(
     llm=llm,
-    # We set a low k=2, to only keep the last 2 interactions in memory
     memory=ConversationBufferWindowMemory(k=2),
     verbose=True
 )
